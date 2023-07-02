@@ -1,25 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import Html from "./component/html/HTML";
 
 function App() {
+
+    // const [users, setUsers] = useState([]);
+    //
+    // useEffect(() => {
+    //     getUsers()
+    // }, [])
+    //
+    // async function getUsers() {
+    //     try {
+    //         const response = await axios.get('http://localhost:5000/users')
+    //       console.log(response.data);
+    //         setUsers(response.data);
+    //     } catch (e) {
+    //         console.log(e);
+    //     }
+    // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div className="App">
+    //     {
+    //         users.map(user => {console.log(user);
+    //             return <div>user.email</div>})
+    //     }
+    // </div>
+
+      <Html/>
   );
 }
 
