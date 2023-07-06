@@ -1,3 +1,8 @@
 main {
     background: #F1F5FE;
 }
+
+.container {
+    margin: auto 55px;
+    height: 90vh;
+}

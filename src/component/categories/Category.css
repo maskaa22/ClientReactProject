@@ -1,0 +1,56 @@
+.create-category {
+    display: block;
+    height: 7vh;
+    background-color: #81d6ec;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 3vh;
+    width: 20%;
+    border: none;
+    cursor: pointer;
+    float: right;
+    margin: 5vh 0;
+}
+
+.category-list {
+    clear: right;
+    width: 100%;
+}
+
+.category-item {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr)  1fr 1fr;
+    border: 2px solid #81d6ec;
+    border-radius: 5px;
+    height: 10vh;
+    font-size: 3vh;
+    padding: 3vh;
+    margin: 5vh auto;
+}
+
+.category-action, .category-more {
+    cursor: pointer;
+    position: relative;
+}
+
+.category-action-container {
+    display: none;
+    background-color: lavender;
+    width: 25vh;
+    position: absolute;
+    right: 5px;
+    z-index: 1;
+    border-radius: 0 0 5px 5px
+}
+
+.category-action:hover .category-action-container {
+    display: block;
+}
+
+.category-action-item {
+    padding: 2vh;
+}
+
+.category-action-item:hover {
+    background-color: #cfcfe5;
+}

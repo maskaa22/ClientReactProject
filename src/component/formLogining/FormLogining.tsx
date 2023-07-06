@@ -44,7 +44,8 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
                             }
                             if (!emailRegex.test(String(e.target.value).toLowerCase())) {
                                 setEmailError('Invalid email. Example-example@site.com');
-                            } else {
+                            }
+                            else {
                                 setEmailError('');
                             }
                         }} className={'input-logining'} placeholder={'Email'} type={'email'}
@@ -54,7 +55,7 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
                     <div className={'form-field'}>
                         <input value={password} onChange={(e) => {
                             setPassword(e.target.value);
-                            if ((e.target.value.length < 4)) {
+                            if (e.target.value.length < 4) {
                                 setPasswordError('The password must be 4 or more characters');
                             } else {
                                 setPasswordError('');
@@ -69,7 +70,7 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
                     </div>
                 </div>
                 <div className={'form-button'}>
-                    <button disabled={formValid} className={'button-login'} onClick={() => {
+                    <button disabled={formValid}  onClick={() => {
                         isLogin ? login(email, password).then(() => {
                             if(localStorage.getItem('token')) {
                                 navigate('/categories');

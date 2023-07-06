@@ -1,0 +1,44 @@
+
+.modal-form {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 50vh;
+    height:fit-content;
+    transform: translate(-50%, -50%);
+    background: #F1F5FE;
+    border-radius: 5px;
+}
+
+.modal-form:focus {
+    border: none;
+}
+
+.modal-create-category {
+    margin: auto 30px;
+}
+
+.modal-h2 {
+    margin: 5vh 0;
+    text-align: center;
+    font-size: 4vh;
+    color: #81d6ec;
+}
+
+.modal-label {
+    font-size: 2.5vh;
+}
+
+.modal-input {
+    margin: 2vh 0;
+}
+
+.modal-button-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2vh 0 4vh;
+}
+
+.modal-button {
+    width: 40%;
+}

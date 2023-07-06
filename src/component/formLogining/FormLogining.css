@@ -123,7 +123,7 @@ input:focus {
 .form-field {
     margin-bottom: 2vh;
 }
-.button-login {
+button {
     display: block;
     height: 7vh;
     background-color: #81d6ec;
@@ -143,7 +143,7 @@ input:focus {
 .error-input-first {
     margin-top: 15px;
 }
-.button-login:hover {
+button:hover {
     background-color: #75cbdc;
 }
 button:disabled {

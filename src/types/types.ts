@@ -1,4 +1,5 @@
 
+
 export interface IUser {
     email:string;
     password:string;
@@ -7,8 +8,22 @@ export interface IUser {
 export interface ICategory {
     id:number;
     name:string;
-    dateCreated:Date;
-    userId: number;
+    dateCreated:number;
+}
+
+export interface CategoryItemProps {
+    category: ICategory,
+    handleOpenDelete: any,
+    handleOpenEdit: any
+}
+
+export interface CategoryItemDeleteProps {
+    category: ICategory,
+    handleOpenDelete: any,
+}
+export interface CategoryItemEditProps {
+    category: ICategory,
+    handleOpenEdit: any
 }
 
 export interface ITask {

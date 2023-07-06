@@ -26,6 +26,7 @@ const Header = () => {
                 <ul className={'nav-menu-logining'}>
                     {!isAuth&& <li className={'nav-item'}><NavLink className={'nav-link'} to={'/login'}>Login</NavLink></li>}
                     {!isAuth&& <li className={'nav-item'}><NavLink className={'nav-link'} to={'/registration'}>Registration</NavLink></li>}
+
                     {isAuth && <li className={'nav-item'} onClick={() => {
                         localStorage.removeItem('token');
                         store.dispatch(removeAuth())
