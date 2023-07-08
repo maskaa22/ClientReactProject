@@ -1,10 +1,11 @@
 import React, {FC} from 'react';
-import {CategoryListProps} from "../../types/types";
-import CategoryItem from "./CategoryItem";
-import './Category.css';
 
+import './Category.css';
+import CategoryItem from "./CategoryItem";
+import {CategoryListProps} from "../../types/types";
 
 const CategoryList: FC<CategoryListProps> = ({categories, handleOpenDelete, handleOpenEdit}) => {
+
     return (
         <div className={'category-list'}>
             {

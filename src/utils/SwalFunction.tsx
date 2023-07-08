@@ -1,6 +1,6 @@
 const Swal = require('sweetalert2');
 
-export function SwalFunction(title:string, text:string, icon:string, confirmButtonText:string, showConfirmButton:boolean) {
+export function SwalFunction(title: string, text: string, icon: string, confirmButtonText: string, showConfirmButton: boolean) {
     Swal.fire({
         title: title,
         text: text,

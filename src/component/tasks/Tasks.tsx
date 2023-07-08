@@ -1,10 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
-import TaskList from "./TaskList";
-import {getTasks} from "../../services/API";
-import './Tasks.css';
 
-const Tasks:FC = () => {
+import './Tasks.css';
+import {getTasks} from "../../services/API";
+import TaskList from "./TaskList";
+import {TOKEN} from "../../config/constants";
+
+const Tasks: FC = () => {
 
     const navigate = useNavigate();
 
@@ -16,16 +18,14 @@ const Tasks:FC = () => {
     const [tasks, setTasks] = useState([]);
     const [nameCategory, setNameCategory] = useState('');
 
-
     useEffect(() => {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem(TOKEN)) {
             getTasks(+categoryId).then(res => {
                 setNameCategory(res.nameCategory.name);
-                setTasks(res.tasks)
+                setTasks(res.tasks);
             })
         }
-
-    }, [tasks]);
+    }, [tasks, categoryId]);
 
     return (
         <div className={'container'}>

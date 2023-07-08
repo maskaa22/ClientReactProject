@@ -1,4 +1,3 @@
-
 .container-position {
     position: relative;
 }
@@ -23,6 +22,7 @@
     transform: translate(-50%, -50%);
     border-radius: 5px;
 }
+
 .create-task-container {
     margin: auto 30px;
 }

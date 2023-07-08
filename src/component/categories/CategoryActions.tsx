@@ -1,10 +1,12 @@
 import React, {FC} from 'react';
-import {CategoryItemProps} from "../../types/types";
+
 import './Category.css';
 import CategoryEditPopup from "./CategoryEditPopup";
 import CategoryDeletePopup from "./CategoryDeletePopup";
+import {CategoryItemProps} from "../../types/types";
 
 const CategoryActions: FC<CategoryItemProps> = ({category, handleOpenDelete, handleOpenEdit}) => {
+
     return (
         <div className={'category-action'}>action
             <div className={'category-action-container'}>

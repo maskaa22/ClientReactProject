@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import {TaskItemDeleteProps} from "../../types/types";
+
 import ModalWindow from "../../utils/Modal";
+import {TaskItemDeleteProps} from "../../types/types";
 
 const TaskDeletePopup: FC<TaskItemDeleteProps> = ({taskId, categoryId}) => {
 
     const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
-
 
     const handleOpenDelete = () => {
         setOpenDeleteModal(true);
@@ -18,7 +18,7 @@ const TaskDeletePopup: FC<TaskItemDeleteProps> = ({taskId, categoryId}) => {
     return (
         <>
             <button className={'modal-button'}
-                onClick={() => handleOpenDelete()}
+                    onClick={() => handleOpenDelete()}
             >delete
             </button>
             <ModalWindow open={openDeleteModal} handleClose={handleCloseDelete} createCategoryFlag={false}

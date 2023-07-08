@@ -4,7 +4,7 @@ const initialState: IUserState = {
     isAuth: false
 }
 
-export const UserReducer = (state = initialState, action:UserAction) : IUserState => {
+export const UserReducer = (state = initialState, action: UserAction): IUserState => {
     switch (action.type) {
         case UserActionType.AUTORIZATION:
             return {isAuth: true}

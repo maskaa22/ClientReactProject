@@ -1,15 +1,16 @@
 import axios, {AxiosError, AxiosInstance} from "axios";
+
+import {BASE_URL, CATEGORY, LOGIN, REGISTRATION, TOKEN} from "../config/constants";
 import {IUser} from "../types/types";
-import {SwalFunction} from "../utils/SwalFunction";
-import {store} from '../store'
 import {setAuth} from "../store/action/user";
-import {BASE_URL, CATEGORY, LOGIN, REGISTRATION} from "../config/constants";
+import {SwalFunction} from "../utils/SwalFunction";
+import {store} from '../store';
 
 const authAxios: AxiosInstance = axios.create({
     withCredentials: true,
     baseURL: BASE_URL,
     headers: {
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
     },
 });
 
@@ -23,7 +24,7 @@ export const registration = async (email: string, password: string, role: string
             })
             .catch(err => {
                 SwalFunction('Error', `${err.response.data.message}`, 'error', 'OK', true);
-            })
+            });
     } catch (error) {
         const err = error as AxiosError;
         SwalFunction('Error', `${err.response?.data}`, 'error', 'OK', true);
@@ -41,7 +42,6 @@ export async function login(email: string, password: string) {
             .catch(err => {
                 SwalFunction('Error', `${err.response.data.message}`, 'error', 'OK', true);
             });
-
     } catch (error) {
         const err = error as AxiosError;
         SwalFunction('Error', `${err.response?.data}`, 'error', 'OK', true);
@@ -53,15 +53,15 @@ export async function createCategory(name: string, handleClose: any) {
 
         return await authAxios.post(CATEGORY, {name}, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         })
             .then(() => {
-                handleClose()
+                handleClose();
                 SwalFunction('Category created', ``, 'success', 'OK', true);
             })
             .catch(err => {
-                handleClose()
+                handleClose();
                 SwalFunction('Error', `${err.response.data.message}`, 'error', 'OK', true);
             });
     } catch (error) {
@@ -74,12 +74,14 @@ export async function getCategories() {
     try {
         const response = await authAxios.get(CATEGORY, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         });
-        return response.data
-    } catch (e) {
-        console.log(e);
+
+        return response.data;
+    } catch (error) {
+        const err = error as AxiosError;
+        SwalFunction('Error', `${err.response?.data}`, 'error', 'OK', true);
     }
 }
 
@@ -87,15 +89,15 @@ export async function deleteCategory(id: number, handleClose: any) {
     try {
         return await authAxios.delete(`${CATEGORY}/${id}`, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         })
             .then(() => {
-                handleClose()
+                handleClose();
                 SwalFunction('Category deleted', ``, 'success', 'OK', true);
             })
             .catch(err => {
-                handleClose()
+                handleClose();
                 SwalFunction('Error', `${err.response.data.message}`, 'error', 'OK', true);
             });
     } catch (error) {
@@ -108,15 +110,15 @@ export async function editCategory(name: string, id: number, handleClose: any) {
     try {
         return await authAxios.patch(`${CATEGORY}/${id}`, {name}, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         })
             .then(() => {
-                handleClose()
+                handleClose();
                 SwalFunction('Category update', ``, 'success', 'OK', true);
             })
             .catch(err => {
-                handleClose()
+                handleClose();
                 SwalFunction('Error', `${err.response.data.message}`, 'error', 'OK', true);
             });
     } catch (error) {
@@ -137,7 +139,7 @@ export async function createTask(name: string, description: string, dateStart: D
             },
             {
                 withCredentials: true, headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
                 }
             })
             .then((res) => {
@@ -157,27 +159,32 @@ export async function getTasks(idCategory: number) {
     try {
         const response = await authAxios.get(`categories/${idCategory}/task`, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         });
 
-        return response.data
-    } catch (e) {
-        console.log(e);
+        return response.data;
+    } catch (error) {
+        const err = error as AxiosError;
+        SwalFunction('Error', `${err.response?.data}`, 'error', 'OK', true);
     }
 }
+
 export async function getCountTasks(idCategory: number) {
     try {
         const response = await authAxios.get(`categories/${idCategory}/tasks`, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         });
-        return response.data
-    } catch (e) {
-        console.log(e);
+
+        return response.data;
+    } catch (error) {
+        const err = error as AxiosError;
+        SwalFunction('Error', `${err.response?.data}`, 'error', 'OK', true);
     }
 }
+
 export async function editTask(name: string, description: string, dateStart: Date, dateEnd: Date, category: number, task_id: number) {
     try {
 
@@ -189,7 +196,7 @@ export async function editTask(name: string, description: string, dateStart: Dat
             category
         }, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         })
             .then((res) => {
@@ -210,15 +217,15 @@ export async function deleteTask(categoryId: number, handleClose: any, task_id: 
 
         return await authAxios.delete(`${CATEGORY}/${categoryId}/task/${task_id}`, {
             withCredentials: true, headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`,
+                Authorization: `Bearer ${localStorage.getItem(TOKEN)}`,
             }
         })
             .then(() => {
-                handleClose()
+                handleClose();
                 SwalFunction('Task deleted', ``, 'success', 'OK', true);
             })
             .catch(err => {
-                handleClose()
+                handleClose();
                 SwalFunction('Error', `${err.response.data.message}`, 'error', 'OK', true);
             });
     } catch (error) {

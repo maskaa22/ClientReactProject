@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
+
 import './Category.css';
 import CategoryList from "./CategoryList";
-import ModalWindow from "../../utils/Modal";
 import {getCategories} from "../../services/API";
+import ModalWindow from "../../utils/Modal";
+import {TOKEN} from "../../config/constants";
 
-const Categories = () => {
+const Categories: FC = () => {
 
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem(TOKEN)) {
             getCategories().then(res => {
-                setCategories(res)
+                setCategories(res);
             })
         }
-
     }, [categories]);
 
     const [openCreateModal, setOpenCreateModal] = React.useState(false);
     const [openDeleteModal, setOpenDeleteModal] = React.useState(false);
     const [openEditModal, setOpenEditModal] = React.useState(false);
-
     const [categoryId, setCategoryId] = useState(0);
     const [categoryName, setCategoryName] = useState('');
 
@@ -39,6 +39,7 @@ const Categories = () => {
     const handleCloseDelete = () => {
         setOpenDeleteModal(false);
     };
+
     const handleOpenEdit = (id: number, name: string) => {
         setCategoryId(id);
         setCategoryName(name);
@@ -52,7 +53,7 @@ const Categories = () => {
     return (
         <div className={'container'}>
             <button className={'create-category'} onClick={() => {
-                handleOpenCreate()
+                handleOpenCreate();
             }}>Add category
             </button>
             <CategoryList categories={categories} handleOpenDelete={handleOpenDelete} handleOpenEdit={handleOpenEdit}/>
@@ -66,7 +67,6 @@ const Categories = () => {
             <ModalWindow open={openEditModal} handleClose={handleCloseEdit} createCategoryFlag={false}
                          deleteCategoryFlag={false} categoryId={categoryId} editCategoryFlag={true}
                          categoryName={categoryName} deleteTaskFlag={false} taskId={0}/>
-
         </div>
     );
 };

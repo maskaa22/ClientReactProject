@@ -1,14 +1,16 @@
 import React from 'react';
+
+import './Html.css';
 import Header from "../header/Header";
 import Main from "../main/main";
-import './Html.css';
 
 const Html = () => {
+
     return (
-        <div>
+        <>
             <Header/>
             <Main/>
-        </div>
+        </>
     );
 };
 

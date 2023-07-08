@@ -1,5 +1,6 @@
-import React, {FC, useState} from 'react';
 import {Modal} from "@material-ui/core";
+import React, {FC, useState} from 'react';
+
 import './Modal.css';
 import {createCategory, deleteCategory, deleteTask, editCategory} from "../services/API";
 
@@ -60,7 +61,6 @@ const ModalWindow: FC<ModalProps> = ({
                             deleteCategoryFlag && deleteCategory(categoryId, handleClose);
                             deleteTaskFlag && deleteTask(categoryId, handleClose, taskId);
                             editCategoryFlag && editCategory(name, categoryId, handleClose);
-
                         }}>
                             {(createCategoryFlag || editCategoryFlag) && 'save'}
                             {(deleteCategoryFlag || deleteTaskFlag) && 'yes'}

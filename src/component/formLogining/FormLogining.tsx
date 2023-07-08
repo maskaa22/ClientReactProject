@@ -1,13 +1,15 @@
 import React, {FC, useEffect, useState} from 'react';
-import {login, registration} from "../../services/API";
-import './FormLogining.css';
 import {useNavigate} from "react-router-dom";
 
-interface FormLoginingProps {
-    isLogin: boolean;
-}
+import './FormLogining.css';
+import {FormLoginingProps} from "../../types/types";
+import {login, registration} from "../../services/API";
+import {TOKEN} from "../../config/constants";
+
 
 const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,16 +19,13 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
     const [passwordError, setPasswordError] = useState('The password cannot be empty');
     const [formValid, setFormValid] = useState(true);
 
-
     useEffect(() => {
-            if (emailError !== '' || passwordError !== '') {
-                setFormValid(true);
-            } else {
-                setFormValid(false);
-            }
+        if (emailError !== '' || passwordError !== '') {
+            setFormValid(true);
+        } else {
+            setFormValid(false);
+        }
     }, [emailError, passwordError, formValid]);
-
-    const navigate = useNavigate();
 
     return (
         <div className={'form-center'}>
@@ -45,8 +44,7 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
                             }
                             if (!emailRegex.test(String(e.target.value).toLowerCase())) {
                                 setEmailError('Invalid email. Example-example@site.com');
-                            }
-                            else {
+                            } else {
                                 setEmailError('');
                             }
                         }} className={'input-logining'} placeholder={'Email'} type={'email'}
@@ -71,17 +69,17 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
                     </div>
                 </div>
                 <div className={'form-button'}>
-                    <button disabled={formValid}  onClick={() => {
+                    <button disabled={formValid} onClick={() => {
                         isLogin ? login(email, password).then(() => {
-                            if(localStorage.getItem('token')) {
+                            if (localStorage.getItem(TOKEN)) {
                                 navigate('/categories');
                             }
-                            }) : registration(email, password, 'user').then((res) => {
-                            if(res!==undefined) {
+                        }) : registration(email, password, 'user').then((res) => {
+                            if (res !== undefined) {
                                 navigate('/login');
                             }
                         })
-                        }}>{isLogin ? 'Login' : 'Signup'}</button>
+                    }}>{isLogin ? 'Login' : 'Signup'}</button>
                 </div>
             </div>
         </div>

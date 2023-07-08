@@ -1,23 +1,23 @@
-import React, {FC, useState} from 'react';
-import './Tasks.css';
-import {TextField} from "@material-ui/core";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {createTask, editTask} from "../../services/API";
-import {SwalFunction} from "../../utils/SwalFunction";
-import {ITaskProps} from "../../types/types";
+import DatePicker from "react-datepicker";
+import React, {FC, useState} from 'react';
+import {TextField} from "@material-ui/core";
 import {useNavigate} from "react-router-dom";
 
+import './Tasks.css';
+import {createTask, editTask} from "../../services/API";
+import {ITaskProps} from "../../types/types";
+import {SwalFunction} from "../../utils/SwalFunction";
+
 const Task: FC<ITaskProps> = ({editFlag}) => {
+
+    const navigate = useNavigate();
 
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     const [required, setRequired] = useState(true);
-
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
-
-    const navigate = useNavigate();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDescription(event.target.value);
@@ -90,7 +90,6 @@ const Task: FC<ITaskProps> = ({editFlag}) => {
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     );
