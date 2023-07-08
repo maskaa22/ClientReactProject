@@ -21,7 +21,7 @@ const Header = () => {
             <div className={'nav'}>
                 <ul className={'nav-menu-items'}>
                     <li className={'nav-item'}><NavLink className={'nav-link'} to={'/categories'}>Categories</NavLink></li>
-                    <li className={'nav-item'}><NavLink className={'nav-link'} to={'/task'}>Task</NavLink></li>
+                    {/*<li className={'nav-item'}><NavLink className={'nav-link'} to={'/categories/:id/task'}>Task</NavLink></li>*/}
                 </ul>
                 <ul className={'nav-menu-logining'}>
                     {!isAuth&& <li className={'nav-item'}><NavLink className={'nav-link'} to={'/login'}>Login</NavLink></li>}

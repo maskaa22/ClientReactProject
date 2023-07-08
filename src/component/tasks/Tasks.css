@@ -1,0 +1,66 @@
+
+.container-position {
+    position: relative;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5vh 0;
+}
+
+.create-task {
+    width: 20%;
+}
+
+.form-create-task {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 70vh;
+    border: 2px solid #61dafb;
+    height: fit-content;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+}
+.create-task-container {
+    margin: auto 30px;
+}
+
+.MuiFormControl-root {
+    background: #fff;
+    width: 100%;
+}
+
+.task-label-align {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    column-gap: 10vh;
+}
+
+.task-item {
+    border: 2px solid #81d6ec;
+    border-radius: 5px;
+    font-size: 3vh;
+    padding: 3vh 3vh 0;
+    margin: 5vh auto;
+    width: 100%;
+}
+
+h3 {
+    margin: 2vh 0 3vh;
+    text-align: center;
+    color: #81d6ec;
+}
+
+.div-task-item-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 2vh 0 3vh;
+}

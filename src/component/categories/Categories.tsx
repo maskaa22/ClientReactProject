@@ -4,15 +4,17 @@ import CategoryList from "./CategoryList";
 import ModalWindow from "../../utils/Modal";
 import {getCategories} from "../../services/API";
 
-
 const Categories = () => {
 
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        getCategories().then(res => {
-            setCategories(res)
-        })
+        if (localStorage.getItem('token')) {
+            getCategories().then(res => {
+                setCategories(res)
+            })
+        }
+
     }, [categories]);
 
     const [openCreateModal, setOpenCreateModal] = React.useState(false);
@@ -57,13 +59,13 @@ const Categories = () => {
 
             <ModalWindow open={openCreateModal} handleClose={handleCloseCreate} createCategoryFlag={true}
                          deleteCategoryFlag={false} categoryId={categoryId} editCategoryFlag={false}
-                         categoryName={categoryName}/>
+                         categoryName={categoryName} deleteTaskFlag={false} taskId={0}/>
             <ModalWindow open={openDeleteModal} handleClose={handleCloseDelete} createCategoryFlag={false}
                          deleteCategoryFlag={true} categoryId={categoryId} editCategoryFlag={false}
-                         categoryName={categoryName}/>
+                         categoryName={categoryName} deleteTaskFlag={false} taskId={0}/>
             <ModalWindow open={openEditModal} handleClose={handleCloseEdit} createCategoryFlag={false}
                          deleteCategoryFlag={false} categoryId={categoryId} editCategoryFlag={true}
-                         categoryName={categoryName}/>
+                         categoryName={categoryName} deleteTaskFlag={false} taskId={0}/>
 
         </div>
     );

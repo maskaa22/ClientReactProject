@@ -17,6 +17,7 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
     const [passwordError, setPasswordError] = useState('The password cannot be empty');
     const [formValid, setFormValid] = useState(true);
 
+
     useEffect(() => {
             if (emailError !== '' || passwordError !== '') {
                 setFormValid(true);
@@ -75,7 +76,11 @@ const FormLogining: FC<FormLoginingProps> = ({isLogin}) => {
                             if(localStorage.getItem('token')) {
                                 navigate('/categories');
                             }
-                            }) : registration(email, password, 'user')
+                            }) : registration(email, password, 'user').then((res) => {
+                            if(res!==undefined) {
+                                navigate('/login');
+                            }
+                        })
                         }}>{isLogin ? 'Login' : 'Signup'}</button>
                 </div>
             </div>

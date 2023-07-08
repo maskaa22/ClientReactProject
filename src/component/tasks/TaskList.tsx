@@ -1,9 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {TaskListProps} from "../../types/types";
+import TaskItem from "./TaskItem";
+import './Tasks.css';
 
-const TaskList = () => {
+const TaskList: FC<TaskListProps> = ({tasks, categoryId}) => {
+
     return (
-        <div>
-            
+        <div className={'category-list task-list'}>
+            {
+                tasks?.map(task =>
+                    <TaskItem key={task.id} task={task} categoryId={categoryId}/>
+                ).reverse()}
         </div>
     );
 };

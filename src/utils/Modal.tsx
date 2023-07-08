@@ -1,14 +1,16 @@
 import React, {FC, useState} from 'react';
 import {Modal} from "@material-ui/core";
 import './Modal.css';
-import {createCategory, deleteCategory, editCategory} from "../services/API";
+import {createCategory, deleteCategory, deleteTask, editCategory} from "../services/API";
 
 interface ModalProps {
     open: boolean,
     handleClose: any,
     createCategoryFlag: boolean,
-    deleteCategoryFlag: boolean
+    deleteCategoryFlag: boolean,
+    deleteTaskFlag: boolean,
     categoryId: number,
+    taskId: number,
     editCategoryFlag: boolean,
     categoryName: string
 }
@@ -18,9 +20,11 @@ const ModalWindow: FC<ModalProps> = ({
                                          handleClose,
                                          createCategoryFlag,
                                          deleteCategoryFlag,
+                                         deleteTaskFlag,
                                          categoryId,
+                                         taskId,
                                          editCategoryFlag,
-                                         categoryName
+                                         categoryName,
                                      }) => {
 
     const [name, setName] = useState('');
@@ -36,7 +40,8 @@ const ModalWindow: FC<ModalProps> = ({
                 <div className={'modal-create-category'}>
                     <h2 className={'modal-h2'}>
                         {createCategoryFlag && 'Create new category'}
-                        {deleteCategoryFlag && 'Do you want delete this category'}
+                        {deleteCategoryFlag && 'Do you want delete this category?'}
+                        {deleteTaskFlag && 'Do you want delete this task?'}
                         {editCategoryFlag && `Edit ${categoryName} category`}
                     </h2>
                     {(createCategoryFlag || editCategoryFlag) && <div>
@@ -48,16 +53,17 @@ const ModalWindow: FC<ModalProps> = ({
                     <div className={'modal-button-container'}>
                         <button className={'modal-button'} onClick={handleClose}>
                             {(createCategoryFlag || editCategoryFlag) && 'cancel'}
-                            {deleteCategoryFlag && 'no'}
+                            {(deleteCategoryFlag || deleteTaskFlag) && 'no'}
                         </button>
                         <button className={'modal-button'} onClick={() => {
                             createCategoryFlag && createCategory(name, handleClose);
                             deleteCategoryFlag && deleteCategory(categoryId, handleClose);
+                            deleteTaskFlag && deleteTask(categoryId, handleClose, taskId);
                             editCategoryFlag && editCategory(name, categoryId, handleClose);
 
                         }}>
                             {(createCategoryFlag || editCategoryFlag) && 'save'}
-                            {deleteCategoryFlag && 'yes'}
+                            {(deleteCategoryFlag || deleteTaskFlag) && 'yes'}
                         </button>
                     </div>
                 </div>

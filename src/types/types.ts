@@ -10,6 +10,11 @@ export interface ICategory {
     name:string;
     dateCreated:number;
 }
+export interface CategoryListProps {
+    categories: ICategory[],
+    handleOpenDelete: any,
+    handleOpenEdit: any
+}
 
 export interface CategoryItemProps {
     category: ICategory,
@@ -29,9 +34,28 @@ export interface CategoryItemEditProps {
 export interface ITask {
     id:number;
     name:string;
+    description:string
     dateStart:Date;
     dateEnd:Date;
     userId: number;
+}
+export interface ITaskProps {
+    editFlag: boolean
+}
+
+export interface TaskListProps {
+    tasks: ITask[],
+    categoryId: number
+}
+
+export interface TaskItemProps {
+    task: ITask,
+    categoryId: number
+}
+
+export interface TaskItemDeleteProps {
+    taskId: number,
+    categoryId: number
 }
 
 export enum UserActionType {
